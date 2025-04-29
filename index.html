@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balla Botond</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add favicon -->
+    <link rel="icon" href="src/favicon.png" type="image/png">
+    <!-- Fallback favicons for different devices -->
+    <link rel="apple-touch-icon" href="src/favicon.png">
+    <link rel="shortcut icon" href="src/favicon.png">
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loader-container">
+            <img src="src/image.png" alt="Profile" class="loader-image">
+            <div class="circling-dot"></div>
+        </div>
+    </div>
+
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+    
+    <div class="container">
+        <div class="profile">
+            <div class="profile-image">
+                <!-- Replace with your actual image -->
+                <img src="src/image.png" alt="Profile Picture">
+            </div>
+            <div class="profile-name">
+                <h1 id="name-display" class="name-display">
+                    <span id="primary-name">Botond Balla</span>
+                    <span id="alternate-name" class="alternate-name">Balla Botond</span>
+                </h1>
+                <p>Short bio or tagline about yourself</p>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://twitter.com/bllbtnd" class="social-link" target="_blank">
+                <i class="fab fa-twitter"></i>
+                <span>X</span>
+            </a>
+            <a href="https://github.com/bllbtnd" class="social-link" target="_blank">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="https://facebook.com/bllbtnd" class="social-link" target="_blank">
+                <i class="fab fa-facebook"></i>
+                <span>Facebook</span>
+            </a>
+            <a href="https://instagram.com/balla.botond" class="social-link" target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+            <a href="https://youtube.com/@bllbtnd" class="social-link" target="_blank">
+                <i class="fab fa-youtube"></i>
+                <span>YouTube</span>
+            </a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

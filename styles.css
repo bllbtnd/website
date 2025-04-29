@@ -1,0 +1,396 @@
+:root {
+    /* Dark theme (default) */
+    --bg-color: #121212;
+    --card-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --accent-color: #006400;
+    --hover-color: #008000;
+    --secondary-text: #aaa;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --deep-shadow: rgba(0, 0, 0, 0.15);
+}
+
+/* Light theme variables */
+[data-theme="light"] {
+    --bg-color: #f5f5f5;
+    --card-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: #006400;
+    --hover-color: #008000;
+    --secondary-text: #666;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --deep-shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card-color);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    color: var(--text-color);
+    z-index: 100;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--deep-shadow);
+}
+
+.theme-toggle .fa-sun {
+    display: none;
+}
+
+.theme-toggle .fa-moon {
+    display: block;
+}
+
+[data-theme="light"] .theme-toggle .fa-sun {
+    display: block;
+}
+
+[data-theme="light"] .theme-toggle .fa-moon {
+    display: none;
+}
+
+.container {
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto;
+    padding: clamp(20px, 5vw, 40px);
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: clamp(20px, 8vh, 60px);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.profile-image img {
+    width: clamp(100px, 30vw, 150px);
+    height: clamp(100px, 30vw, 150px);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    padding: 3px;
+    margin-bottom: clamp(15px, 4vh, 25px);
+    transition: transform 0.3s ease;
+}
+
+.profile-image img:hover {
+    transform: scale(1.05);
+}
+
+.profile-name h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin-bottom: 10px;
+}
+
+.profile-name p {
+    color: var(--secondary-text);
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2vh, 16px);
+    width: 100%;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-color);
+    color: var(--text-color);
+    text-decoration: none;
+    padding: clamp(12px, 3vh, 16px) clamp(16px, 4vw, 24px);
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    opacity: 0;
+    animation: slideIn 0.5s ease-in-out forwards;
+}
+
+.social-link:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px var(--deep-shadow);
+    color: white;
+}
+
+.social-link i {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    margin-right: clamp(10px, 3vw, 15px);
+    min-width: 24px;
+    text-align: center;
+}
+
+.social-link span {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media queries for better responsive design */
+/* Small phones */
+@media (max-width: 360px) {
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .social-link {
+        padding: 10px 16px;
+    }
+    
+    .container {
+        padding: 15px 10px;
+    }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 15px;
+        margin-top: 30px;
+    }
+    
+    .profile-image img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .profile-name h1 {
+        font-size: 1.5rem;
+    }
+    
+    .theme-toggle {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 960px) {
+    .container {
+        padding: 30px 25px;
+        max-width: 90%;
+    }
+    
+    .profile-name h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Laptops and larger screens */
+@media (min-width: 961px) {
+    .container {
+        padding: 40px 30px;
+        max-width: 800px;
+    }
+    
+    .social-links {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
+
+/* For landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .container {
+        padding-top: 60px;
+    }
+    
+    .profile {
+        margin-bottom: 20px;
+    }
+    
+    .profile-image img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+    
+    .profile-name h1 {
+        font-size: 1.3rem;
+    }
+    
+    .profile-name p {
+        margin-bottom: 10px;
+    }
+    
+    .social-links {
+        gap: 10px;
+    }
+}
+
+/* Add these styles for smooth name loading */
+.name-display.loading {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.name-display.loaded {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* Existing name hover styles */
+.name-display {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.alternate-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.name-display:hover .alternate-name {
+    opacity: 1;
+}
+
+.name-display:hover #primary-name {
+    opacity: 0;
+}
+
+#primary-name {
+    transition: opacity 0.3s ease;
+}
+
+/* Loading overlay styles */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.circling-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    margin-left: -6px;
+    margin-top: -6px;
+    animation: circleDot 2s infinite linear;
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+@keyframes circleDot {
+    0% {
+        transform: rotate(0deg) translateX(70px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(70px) rotate(-360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Make content initially invisible */
+.container {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.container.loaded {
+    opacity: 1;
+}
