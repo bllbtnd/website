@@ -193,7 +193,7 @@ body {
     
     .language-toggle {
         top: 55px; /* Position under theme toggle (35px height + 10px margin) */
-        right: 10px; /* Align with theme toggle */
+        right: 10px;
         width: 35px;
         height: 35px;
     }
@@ -207,7 +207,7 @@ body {
     }
 }
 
-/* For phones (but not the smallest ones) */
+/* Phones */
 @media (min-width: 361px) and (max-width: 600px) {
     .container {
         padding: 20px 15px;
@@ -229,7 +229,7 @@ body {
     }
     
     .language-toggle {
-        top: 70px; /* Adjust for slightly different spacing on phones */
+        top: 70px; /* Position under theme toggle (45px height + 10px margin) */
         right: 15px;
     }
 }
@@ -423,6 +423,7 @@ body {
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 2px 4px var(--shadow-color);
+    color: var(--text-color);
     z-index: 100;
     transition: all 0.3s ease;
 }
@@ -435,19 +436,11 @@ body {
 .language-toggle .lang-indicator {
     font-size: 0.8em;
     font-weight: bold;
-    transition: opacity 0.3s ease;
-    color: var(--text-color); /* Explicitly set text color */
+    color: var(--text-color);
 }
 
-.language-toggle span {
-    color: var(--text-color); /* Force the same color on all spans */
-}
-
-.language-toggle .fas {
-    margin-right: 5px;
-}
-
-/* Adjust for small screens */
+/* Media queries for better responsive design */
+/* Small phones */
 @media (max-width: 360px) {
     .theme-toggle {
         top: 10px;
@@ -459,7 +452,7 @@ body {
     
     .language-toggle {
         top: 55px; /* Position under theme toggle (35px height + 10px margin) */
-        right: 10px; /* Align with theme toggle */
+        right: 10px;
         width: 35px;
         height: 35px;
     }
@@ -473,7 +466,7 @@ body {
     }
 }
 
-/* For phones (but not the smallest ones) */
+/* Phones */
 @media (min-width: 361px) and (max-width: 600px) {
     .container {
         padding: 20px 15px;
@@ -495,7 +488,7 @@ body {
     }
     
     .language-toggle {
-        top: 70px; /* Adjust for slightly different spacing on phones */
+        top: 70px; /* Position under theme toggle (45px height + 10px margin) */
         right: 15px;
     }
 }
