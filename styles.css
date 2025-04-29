@@ -398,7 +398,26 @@ body {
 
 /* Language toggle button styling */
 .language-toggle {
+    position: fixed;
+    top: 20px;
     right: 80px; /* Position next to theme toggle */
+    background: var(--card-color);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.language-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--deep-shadow);
 }
 
 .language-toggle .lang-indicator {
@@ -412,7 +431,16 @@ body {
     color: var(--text-color); /* Force the same color on all spans */
 }
 
-
 .language-toggle .fas {
     margin-right: 5px;
+}
+
+/* Adjust for small screens */
+@media (max-width: 360px) {
+    .language-toggle {
+        top: 10px;
+        right: 60px;
+        width: 35px;
+        height: 35px;
+    }
 }
