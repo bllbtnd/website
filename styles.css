@@ -8,6 +8,7 @@
     --secondary-text: #aaa;
     --shadow-color: rgba(0, 0, 0, 0.1);
     --deep-shadow: rgba(0, 0, 0, 0.15);
+    --border-color: #333;
 }
 
 /* Light theme variables */
@@ -393,4 +394,25 @@ body {
 
 .container.loaded {
     opacity: 1;
+}
+
+/* Language toggle button styling */
+.language-toggle {
+    right: 80px; /* Position next to theme toggle */
+}
+
+.language-toggle .lang-indicator {
+    font-size: 0.8em;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+    color: var(--text-color); /* Explicitly set text color */
+}
+
+.language-toggle span {
+    color: var(--text-color); /* Force the same color on all spans */
+}
+
+
+.language-toggle .fas {
+    margin-right: 5px;
 }

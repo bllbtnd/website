@@ -85,76 +85,133 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle name and bio display based on location
     function setNameBasedOnLocation() {
         const nameDisplay = document.getElementById('name-display');
-        const primaryName = document.getElementById('primary-name');
-        const alternateName = document.getElementById('alternate-name');
-        const primaryBio = document.getElementById('primary-bio');
-        const alternateBio = document.getElementById('alternate-bio');
-        
-        // Add loading class to hide the name initially
         nameDisplay.classList.add('loading');
         
-        // Use IP-based geolocation API
-        fetch('https://ipapi.co/json/')
-            .then(response => response.json())
-            .then(data => {
-                // If the user is in Hungary, display Hungarian name format and bio
-                if (data.country_code === 'HU') {
-                    primaryName.textContent = 'Balla Botond';
-                    alternateName.textContent = 'Botond Balla';
-                    document.title = 'Balla Botond';
-                    
-                    // Switch bio to Hungarian
-                    if (primaryBio) primaryBio.style.display = 'none';
-                    if (alternateBio) alternateBio.style.display = 'block';
-                } else {
-                    primaryName.textContent = 'Botond Balla';
-                    alternateName.textContent = 'Balla Botond';
-                    document.title = 'Botond Balla';
-                    
-                    // Keep bio in English
-                    if (primaryBio) primaryBio.style.display = 'block';
-                    if (alternateBio) alternateBio.style.display = 'none';
+        // Language toggle functionality
+        const languageToggle = document.getElementById('language-toggle');
+        
+        // Function to set language
+        function setLanguage(lang) {
+            const primaryName = document.getElementById('primary-name');
+            const alternateName = document.getElementById('alternate-name');
+            const primaryBio = document.getElementById('primary-bio');
+            const alternateBio = document.getElementById('alternate-bio');
+            
+            // Update the language toggle to show the opposite language
+            function updateLanguageToggleText(lang) {
+                const langIndicator = document.querySelector('.language-toggle .lang-indicator');
+                if (langIndicator) {
+                    // Show the language you can switch TO (not the current one)
+                    langIndicator.textContent = lang === 'hu' ? 'EN' : 'HU';
                 }
+            }
+            
+            if (lang === 'hu') {
+                primaryName.textContent = 'Balla Botond';
+                alternateName.textContent = 'Botond Balla';
+                document.title = 'Balla Botond';
                 
-                // Show the name with a fade-in effect once it's ready
-                setTimeout(() => {
-                    nameDisplay.classList.remove('loading');
-                    nameDisplay.classList.add('loaded');
-                }, 100);
+                if (primaryBio) primaryBio.style.display = 'none';
+                if (alternateBio) alternateBio.style.display = 'block';
                 
-                // Mark location as loaded
-                locationLoaded = true;
-                
-                // Check if all content is loaded
-                if (locationLoaded) {
-                    hideLoadingOverlay();
-                }
-            })
-            .catch(error => {
-                console.error('Error detecting location:', error);
-                // Default to international format if there's an error
+                document.documentElement.setAttribute('data-language', 'hu');
+                updateLanguageToggleText('hu');
+            } else {
                 primaryName.textContent = 'Botond Balla';
                 alternateName.textContent = 'Balla Botond';
                 document.title = 'Botond Balla';
                 
-                // Default to English bio
                 if (primaryBio) primaryBio.style.display = 'block';
                 if (alternateBio) alternateBio.style.display = 'none';
                 
-                // Show the name even in case of error
-                setTimeout(() => {
-                    nameDisplay.classList.remove('loading');
-                    nameDisplay.classList.add('loaded');
-                }, 100);
-                
-                // Mark location as loaded even in case of error
-                locationLoaded = true;
-                
-                // Check if all content is loaded
-                if (locationLoaded) {
-                    hideLoadingOverlay();
-                }
+                document.documentElement.setAttribute('data-language', 'en');
+                updateLanguageToggleText('en');
+            }
+            
+            // Store the user's language preference
+            localStorage.setItem('language', lang);
+        }
+        
+        // Check for user's language preference
+        const userLanguage = localStorage.getItem('language');
+        
+        // Add language toggle event listener
+        if (languageToggle) {
+            languageToggle.addEventListener('click', function() {
+                const currentLang = document.documentElement.getAttribute('data-language') || 'en';
+                setLanguage(currentLang === 'en' ? 'hu' : 'en');
             });
+        }
+        
+        // Use IP-based geolocation API if no user preference exists
+        if (!userLanguage) {
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    // If the user is in Hungary, display Hungarian name format and bio
+                    if (data.country_code === 'HU') {
+                        setLanguage('hu');
+                    } else {
+                        setLanguage('en');
+                    }
+                    
+                    // Show the name with a fade-in effect once it's ready
+                    setTimeout(() => {
+                        nameDisplay.classList.remove('loading');
+                        nameDisplay.classList.add('loaded');
+                    }, 100);
+                    
+                    // Mark location as loaded
+                    locationLoaded = true;
+                    
+                    // Check if all content is loaded
+                    if (locationLoaded) {
+                        hideLoadingOverlay();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error detecting location:', error);
+                    // Default to international format if there's an error
+                    primaryName.textContent = 'Botond Balla';
+                    alternateName.textContent = 'Balla Botond';
+                    document.title = 'Botond Balla';
+                    
+                    // Default to English bio
+                    if (primaryBio) primaryBio.style.display = 'block';
+                    if (alternateBio) alternateBio.style.display = 'none';
+                    
+                    // Show the name even in case of error
+                    setTimeout(() => {
+                        nameDisplay.classList.remove('loading');
+                        nameDisplay.classList.add('loaded');
+                    }, 100);
+                    
+                    // Mark location as loaded even in case of error
+                    locationLoaded = true;
+                    
+                    // Check if all content is loaded
+                    if (locationLoaded) {
+                        hideLoadingOverlay();
+                    }
+                });
+        } else {
+            // Use user's stored language preference
+            setLanguage(userLanguage);
+            
+            // Show the name with a fade-in effect
+            setTimeout(() => {
+                nameDisplay.classList.remove('loading');
+                nameDisplay.classList.add('loaded');
+            }, 100);
+            
+            // Mark location loaded
+            locationLoaded = true;
+            
+            // Check if all content is loaded
+            if (locationLoaded) {
+                hideLoadingOverlay();
+            }
+        }
     }
     
     // Call the function to set name based on location
