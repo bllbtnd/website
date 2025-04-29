@@ -106,7 +106,8 @@ document.addEventListener('DOMContentLoaded', function() {
             function updateLanguageToggleText(lang) {
                 const langIndicator = document.querySelector('.language-toggle .lang-indicator');
                 if (langIndicator) {
-                    // Show the language you can switch TO (not the current one)
+                    // If current language is Hungarian (hu), show EN as the option
+                    // If current language is English (en), show HU as the option
                     langIndicator.textContent = lang === 'hu' ? 'EN' : 'HU';
                 }
             }
