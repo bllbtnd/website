@@ -64,6 +64,33 @@ body {
     font-size: 1.2rem;
 }
 
+/* Language toggle button - matching elegant styling */
+.language-toggle {
+    position: fixed;
+    top: 75px; /* 45px height + 10px margin */
+    right: 20px; /* Same as theme toggle */
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    color: var(--accent-color);
+    z-index: 100;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Add language toggle hover effect */
+.language-toggle:hover {
+    transform: translateY(-3px) rotate(5deg);
+    box-shadow: 0 5px 15px var(--deep-shadow);
+    color: var(--hover-color);
+}
+
 .theme-toggle:hover {
     transform: translateY(-3px) rotate(5deg);
     box-shadow: 0 5px 15px var(--deep-shadow);
@@ -159,7 +186,7 @@ body {
     overflow: hidden;
     -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */
     animation: slideIn 0.5s ease-in-out forwards;
-    opacity: 0;
+    opacity: 0; /* Start invisible and fade in with animation */
 }
 
 .social-link::before {
@@ -269,66 +296,22 @@ html {
     }
 }
 
-/* For landscape orientation on mobile */
-@media (max-height: 500px) and (orientation: landscape) {
-    .social-links {
-        gap: 10px;
-    }
-    
-    .social-link {
-        padding: 12px 18px;
-    }
-    
-    .social-link i {
-        font-size: 1.1rem;
-        margin-right: 10px;
-    }
-}
-
-/* Small phones */
-@media (max-width: 360px) {
-    .social-link {
-        padding: 14px 16px;
-        border-radius: 12px;
-    }
-    
-    .social-link i {
-        margin-right: 10px;
-    }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* Media queries for better responsive design */
 /* Small phones */
 @media (max-width: 360px) {
     .theme-toggle {
-        top: 10px;
-        right: 10px;
-        width: 35px;
-        height: 35px;
+        top: 10px !important;
+        right: 10px !important;
+        width: 35px !important;
+        height: 35px !important;
         font-size: 0.9rem;
     }
     
     .language-toggle {
-        top: 55px; /* Position under theme toggle (35px height + 10px margin) */
-        right: 10px;
-        width: 35px;
-        height: 35px;
+        top: 55px !important; /* Exactly 35px (theme height) + 10px margin */
+        right: 10px !important; /* Match theme toggle's right value exactly */
+        width: 35px !important;
+        height: 35px !important;
     }
     
     .social-link {
@@ -357,13 +340,17 @@ html {
     }
     
     .theme-toggle {
-        top: 15px;
-        right: 15px;
+        top: 15px !important;
+        right: 15px !important;
+        width: 40px !important;
+        height: 40px !important;
     }
     
     .language-toggle {
-        top: 70px; /* Position under theme toggle (45px height + 10px margin) */
-        right: 15px;
+        top: 65px !important; /* Exactly 40px (theme height) + 10px margin */
+        right: 15px !important; /* Match theme toggle's right value exactly */
+        width: 40px !important;
+        height: 40px !important;
     }
 }
 
@@ -377,22 +364,23 @@ html {
     .profile-name h1 {
         font-size: 1.8rem;
     }
-}
-
-/* Laptops and larger screens */
-@media (min-width: 961px) {
-    .container {
-        padding: 40px 30px;
-        max-width: 800px;
+    
+    .theme-toggle {
+        top: 20px !important;
+        right: 20px !important;
+        width: 45px !important;
+        height: 45px !important;
     }
     
-    .social-links {
-        max-width: 90%;
-        margin: 0 auto;
+    .language-toggle {
+        top: 75px !important; /* 45px + 10px margin */
+        right: 20px !important; /* Same as theme toggle */
+        width: 45px !important;
+        height: 45px !important;
     }
 }
 
-/* For landscape orientation on mobile */
+/* Landscape orientation */
 @media (max-height: 500px) and (orientation: landscape) {
     .container {
         padding-top: 60px;
@@ -607,7 +595,8 @@ html {
     }
 }
 
-/* Make content initially invisible */
+/* Make content initially invisible but ensure social links are visible 
+   regardless of container state */
 .container {
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -617,28 +606,14 @@ html {
     opacity: 1;
 }
 
-/* Language toggle button - matching elegant styling */
-.language-toggle {
-    position: fixed;
-    top: 75px;
-    right: 20px;
-    background: var(--card-color);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 3px 10px var(--shadow-color);
-    color: var(--accent-color);
-    z-index: 100;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* Ensure social links are always visible when loaded */
+.container.loaded .social-link {
+    opacity: 1;
 }
 
-.language-toggle:hover {
-    transform: translateY(-3px) rotate(5deg);
-    box-shadow: 0 5px 15px var(--deep-shadow);
-    color: var(--hover-color);
+/* Force social links to be visible even if animations fail */
+@media (max-width: 600px) {
+    .social-link {
+        opacity: 1 !important;
+    }
 }

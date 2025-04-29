@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingOverlay.classList.add('hidden');
             contentContainer.classList.add('loaded');
             
+            // Force social links to be visible
+            document.querySelectorAll('.social-link').forEach(link => {
+                link.style.opacity = '1';
+            });
+            
             // Remove overlay from DOM after transition completes
             setTimeout(() => {
                 if (loadingOverlay.parentNode) {
@@ -217,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Call the function to set name based on location
     setNameBasedOnLocation();
     
-    // Fallback in case something fails
+    // More aggressive fallback in case something fails
     setTimeout(() => {
         if (!locationLoaded) {
             locationLoaded = true;
@@ -229,8 +234,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 nameDisplay.classList.remove('loading');
                 nameDisplay.classList.add('loaded');
             }
+            
+            // Force social links to be visible after delay
+            document.querySelectorAll('.social-link').forEach(link => {
+                link.style.opacity = '1';
+            });
         }
-    }, 5000); // 5-second fallback
+    }, 3000); // Reduce fallback time from 5s to 3s for better user experience
     
     // Add subtle hover effect to social links
     const socialLinks = document.querySelectorAll('.social-link');
