@@ -3,7 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balla Botond</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Balla Botond | Personal Website</title>
+    <meta name="description" content="Official website of Balla Botond. Connect with me on social media platforms and learn more about my work and interests.">
+    <meta name="keywords" content="Balla Botond, Botond Balla, developer, personal website">
+    <meta name="author" content="Balla Botond">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ballabotond.com/">
+    <meta property="og:title" content="Balla Botond | Personal Website">
+    <meta property="og:description" content="Official website of Balla Botond. Connect with me on social media platforms and learn more about my work and interests.">
+    <meta property="og:image" content="src/image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ballabotond.com/">
+    <meta property="twitter:title" content="Balla Botond | Personal Website">
+    <meta property="twitter:description" content="Official website of Balla Botond. Connect with me on social media platforms and learn more about my work and interests.">
+    <meta property="twitter:image" content="src/image.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ballabotond.com/">
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Add favicon -->
@@ -34,8 +57,7 @@
     <div class="container">
         <div class="profile">
             <div class="profile-image">
-                <!-- Replace with your actual image -->
-                <img src="src/image.png" alt="Profile Picture">
+                <img src="src/image.png" alt="Balla Botond Profile Picture">
             </div>
             <div class="profile-name">
                 <h1 id="name-display" class="name-display">
@@ -72,6 +94,26 @@
             </a>
         </div>
     </div>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Balla Botond",
+      "alternateName": "Botond Balla",
+      "url": "https://yourwebsite.com/",
+      "image": "src/image.png",
+      "sameAs": [
+        "https://twitter.com/bllbtnd",
+        "https://github.com/bllbtnd",
+        "https://facebook.com/bllbtnd",
+        "https://instagram.com/balla.botond",
+        "https://youtube.com/@bllbtnd"
+      ]
+    }
+    </script>
+    
     <script src="script.js"></script>
 </body>
 </html>
