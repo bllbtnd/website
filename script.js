@@ -82,11 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Track loading states
     let locationLoaded = false;
     
-    // Handle name display based on location
+    // Handle name and bio display based on location
     function setNameBasedOnLocation() {
         const nameDisplay = document.getElementById('name-display');
         const primaryName = document.getElementById('primary-name');
         const alternateName = document.getElementById('alternate-name');
+        const primaryBio = document.getElementById('primary-bio');
+        const alternateBio = document.getElementById('alternate-bio');
         
         // Add loading class to hide the name initially
         nameDisplay.classList.add('loading');
@@ -95,15 +97,23 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('https://ipapi.co/json/')
             .then(response => response.json())
             .then(data => {
-                // If the user is in Hungary, display Hungarian name format
+                // If the user is in Hungary, display Hungarian name format and bio
                 if (data.country_code === 'HU') {
                     primaryName.textContent = 'Balla Botond';
                     alternateName.textContent = 'Botond Balla';
                     document.title = 'Balla Botond';
+                    
+                    // Switch bio to Hungarian
+                    if (primaryBio) primaryBio.style.display = 'none';
+                    if (alternateBio) alternateBio.style.display = 'block';
                 } else {
                     primaryName.textContent = 'Botond Balla';
                     alternateName.textContent = 'Balla Botond';
                     document.title = 'Botond Balla';
+                    
+                    // Keep bio in English
+                    if (primaryBio) primaryBio.style.display = 'block';
+                    if (alternateBio) alternateBio.style.display = 'none';
                 }
                 
                 // Show the name with a fade-in effect once it's ready
@@ -126,6 +136,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 primaryName.textContent = 'Botond Balla';
                 alternateName.textContent = 'Balla Botond';
                 document.title = 'Botond Balla';
+                
+                // Default to English bio
+                if (primaryBio) primaryBio.style.display = 'block';
+                if (alternateBio) alternateBio.style.display = 'none';
                 
                 // Show the name even in case of error
                 setTimeout(() => {
@@ -176,4 +190,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 600);
         });
     });
+    
+    // Add CSS for the alternate bio
+    document.head.insertAdjacentHTML('beforeend', `
+        <style>
+            .alternate-bio {
+                display: none;
+            }
+        </style>
+    `);
 });
