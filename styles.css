@@ -192,8 +192,8 @@ body {
     }
     
     .language-toggle {
-        top: 10px;
-        right: 55px; /* Position exactly next to theme toggle (35px width + 10px gap) */
+        top: 55px; /* Position under theme toggle (35px height + 10px margin) */
+        right: 10px; /* Align with theme toggle */
         width: 35px;
         height: 35px;
     }
@@ -207,8 +207,8 @@ body {
     }
 }
 
-/* Phones */
-@media (max-width: 600px) {
+/* For phones (but not the smallest ones) */
+@media (min-width: 361px) and (max-width: 600px) {
     .container {
         padding: 20px 15px;
         margin-top: 30px;
@@ -225,6 +225,11 @@ body {
     
     .theme-toggle {
         top: 15px;
+        right: 15px;
+    }
+    
+    .language-toggle {
+        top: 70px; /* Adjust for slightly different spacing on phones */
         right: 15px;
     }
 }
@@ -406,8 +411,8 @@ body {
 /* Language toggle button styling */
 .language-toggle {
     position: fixed;
-    top: 20px;
-    right: 75px; /* Position exactly next to theme toggle (45px width + 10px gap) */
+    top: 75px; /* Position under theme toggle (45px height + 10px margin) */
+    right: 20px; /* Align with theme toggle */
     background: var(--card-color);
     border: none;
     border-radius: 50%;
@@ -453,8 +458,8 @@ body {
     }
     
     .language-toggle {
-        top: 10px;
-        right: 55px; /* Position exactly next to theme toggle (35px width + 10px gap) */
+        top: 55px; /* Position under theme toggle (35px height + 10px margin) */
+        right: 10px; /* Align with theme toggle */
         width: 35px;
         height: 35px;
     }
@@ -468,8 +473,8 @@ body {
     }
 }
 
-/* Phones */
-@media (max-width: 600px) {
+/* For phones (but not the smallest ones) */
+@media (min-width: 361px) and (max-width: 600px) {
     .container {
         padding: 20px 15px;
         margin-top: 30px;
@@ -486,6 +491,11 @@ body {
     
     .theme-toggle {
         top: 15px;
+        right: 15px;
+    }
+    
+    .language-toggle {
+        top: 70px; /* Adjust for slightly different spacing on phones */
         right: 15px;
     }
 }
