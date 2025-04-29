@@ -133,44 +133,168 @@ body {
     letter-spacing: 0.01em;
 }
 
+/* Social links - sophisticated redesign */
 .social-links {
     display: flex;
     flex-direction: column;
-    gap: clamp(12px, 2vh, 16px);
+    gap: clamp(14px, 2.5vh, 18px);
     width: 100%;
+    max-width: 95%;
+    margin: 0 auto;
 }
 
 .social-link {
     display: flex;
     align-items: center;
-    background-color: var(--card-color);
+    background: linear-gradient(145deg, var(--card-color), var(--card-color) 80%, var(--card-color) 100%);
     color: var(--text-color);
     text-decoration: none;
-    padding: clamp(12px, 3vh, 16px) clamp(16px, 4vw, 24px);
-    border-radius: 12px;
+    padding: clamp(14px, 3vh, 18px) clamp(18px, 4vw, 26px);
+    border-radius: 14px;
     font-weight: 500;
     transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    box-shadow: 0 4px 10px var(--shadow-color);
+    box-shadow: 0 4px 12px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.05);
     border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */
+    animation: slideIn 0.5s ease-in-out forwards;
+    opacity: 0;
+}
+
+.social-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transition: left 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .social-link:hover {
-    background-color: var(--hover-color);
-    color: #f8f5f0;
-    border-color: var(--hover-color);
+    background: linear-gradient(145deg, var(--hover-color), var(--hover-color) 90%);
+    color: #fff;
+    border-color: transparent;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px var(--deep-shadow);
+    box-shadow: 0 8px 20px var(--deep-shadow), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.social-link:hover::before {
+    left: 100%;
 }
 
 .social-link i {
     font-size: clamp(1.2rem, 4vw, 1.5rem);
-    margin-right: clamp(10px, 3vw, 15px);
+    margin-right: clamp(12px, 3vw, 18px);
     min-width: 24px;
     text-align: center;
+    color: var(--accent-color);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-link:hover i {
+    color: #fff;
+    transform: scale(1.1);
 }
 
 .social-link span {
-    font-size: clamp(0.9rem, 3vw, 1rem);
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* Custom scrollbar styling to match premium theme */
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+    border: 2px solid var(--bg-color);
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--hover-color);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--bg-color);
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--bg-color);
+}
+
+/* Ensure body has min-height for scrollbar to show properly */
+html {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+/* Custom styling for each social link */
+.social-link:nth-child(1) { animation-delay: 0.1s; }
+.social-link:nth-child(2) { animation-delay: 0.2s; }
+.social-link:nth-child(3) { animation-delay: 0.3s; }
+.social-link:nth-child(4) { animation-delay: 0.4s; }
+.social-link:nth-child(5) { animation-delay: 0.5s; }
+
+/* Enhanced mobile styling */
+@media (max-width: 600px) {
+    .social-link {
+        padding: 16px 20px;
+        margin-bottom: 2px; /* Creates subtle stacking effect */
+    }
+    
+    .social-link:active {
+        transform: translateY(1px);
+        transition: transform 0.1s;
+    }
+}
+
+/* For landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .social-links {
+        gap: 10px;
+    }
+    
+    .social-link {
+        padding: 12px 18px;
+    }
+    
+    .social-link i {
+        font-size: 1.1rem;
+        margin-right: 10px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 360px) {
+    .social-link {
+        padding: 14px 16px;
+        border-radius: 12px;
+    }
+    
+    .social-link i {
+        margin-right: 10px;
+    }
 }
 
 @keyframes fadeIn {
