@@ -1,23 +1,23 @@
 :root {
-    /* Dark theme (default) - Premium masculine */
+    /* Dark theme (default) - Premium masculine burgundy */
     --bg-color: #0c0c0f;
     --card-color: #16161c;
     --text-color: #f2f2ed;
-    --accent-color: #8c6240; /* Rich cognac/whiskey */
-    --hover-color: #a67747;
+    --accent-color: #8b1a2a; /* Rich reddish burgundy - more masculine */
+    --hover-color: #a62333; /* Deeper red for hover */
     --secondary-text: #a8a8a8;
     --shadow-color: rgba(0, 0, 0, 0.25);
     --deep-shadow: rgba(0, 0, 0, 0.35);
     --border-color: #252529;
 }
 
-/* Light theme variables - Premium masculine */
+/* Light theme variables - Premium masculine burgundy */
 [data-theme="light"] {
     --bg-color: #f4f2ed; /* Warm cream instead of stark white */
     --card-color: #ffffff;
     --text-color: #282828;
-    --accent-color: #70492d; /* Dark cognac */
-    --hover-color: #8c6240;
+    --accent-color: #6e1520; /* Deep reddish burgundy */
+    --hover-color: #8b1a2a;
     --secondary-text: #696969;
     --shadow-color: rgba(0, 0, 0, 0.08);
     --deep-shadow: rgba(0, 0, 0, 0.12);
@@ -543,11 +543,11 @@ html {
 
 @keyframes pulseGlow {
     0%, 100% {
-        box-shadow: 0 0 15px rgba(140, 98, 64, 0.4);
+        box-shadow: 0 0 15px rgba(139, 26, 42, 0.4);
         opacity: 0.6;
     }
     50% {
-        box-shadow: 0 0 25px rgba(140, 98, 64, 0.6);
+        box-shadow: 0 0 25px rgba(139, 26, 42, 0.6);
         opacity: 1;
     }
 }
